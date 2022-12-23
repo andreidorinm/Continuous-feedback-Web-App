@@ -34,4 +34,26 @@ professorRouter.get(
     }
   );
 
+  //get activities by professor id
+  professorRouter.get(
+    "/:professorId/activities",
+    async (request, response, next) => {
+      try {
+        const professor = await Professor.findByPk(request.params.professorId);
+        if (professor) {
+          const activities = await professor.getActivities();
+          if (activities.length > 0) {
+            response.json(activities);
+          } else {
+            response.sendStatus(204);
+          }
+        } else {
+          response.sendStatus(404);
+        }
+      } catch (error) {
+        next(error);
+      }
+    }
+  );
+
   
