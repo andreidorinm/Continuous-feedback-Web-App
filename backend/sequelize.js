@@ -5,7 +5,7 @@ const sequelize = new Sequelize({
     storage: "./sqlite/continuousFeedback.db"
 })
 
-sequelize.sync({ alter: true }).then(() => {
+sequelize.sync().then(() => {
     console.log("All the models have been synchronized")
 })
 
