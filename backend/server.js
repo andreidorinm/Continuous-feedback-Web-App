@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { sequelize } from "./sequelize.js";
+import { mainRouter } from "./Routes/mainRouter.js";
+import * as errorMiddleware from "./Middleware/errorMiddleware.js"
 
 import { Activity } from "./Models/activity.js"
 import { Feedback } from "./Models/feedback.js"
@@ -24,10 +26,21 @@ Professor.hasMany(Activity, { foreignKey: 'professorId', as: 'activities', onDel
 Student.hasMany(Participation, { foreignKey: 'studentId', as: 'participations', onDelete: 'CASCADE' });
 //#endregion
 
+//#region middleware & routes
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+//routes
+app.use("/api", mainRouter);
+
+//error middleware
+app.use(errorMiddleware.handleJSONParsing);
+app.use(errorMiddleware.handleQueries);
+app.use(errorMiddleware.handleDatabase);
+app.use(errorMiddleware.handleServer);
+//#endregion
 
 //run server
 const serverPort = 5001
