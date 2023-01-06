@@ -4,20 +4,28 @@ import { DataTypes } from "sequelize";
 const Activity = sequelize.define(
     "Activity",
     {
-        accessCode: {
-            type: DataTypes.INTEGER,
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true
+        },
+        professorId: {
+            type: DataTypes.UUID,
+            allowNull: false
         },
         title: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        description: DataTypes.STRING,
-        startDate: {
+        description: DataTypes.TEXT,
+        date: {
             type: DataTypes.DATE,
             allowNull: false
         },
-        duration: DataTypes.TIME
+        duration: DataTypes.INTEGER
+    },
+    {
+        timestamps: false
     }
 )
 
