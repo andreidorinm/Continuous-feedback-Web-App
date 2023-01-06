@@ -5,18 +5,25 @@ const Feedback = sequelize.define(
     "Feedback",
     {
         id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true
+        },
+        activityId: {
+            type: DataTypes.UUID,
+            allowNull: false
         },
         emoticon: {
             type: DataTypes.ENUM('smiley', 'frowny', 'surprised', 'confused'),
             allowNull: false
         },
-        activityCode: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+        timeStamp: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
         }
+    },
+    {
+        timestamps: false
     }
 )
 
