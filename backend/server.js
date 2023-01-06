@@ -1,43 +1,22 @@
-import path from "path";
 import express from "express";
-import dotenv from "dotenv";
-import morgan from "morgan";
-import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
-import connectDB from "./config/db.js";
-
-dotenv.config();
-
-connectDB();
+import cors from "cors";
+import bodyParser from "body-parser";
+import { sequelize } from "./sequelize.js";
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
-
-app.use(express.json());
-
-const __dirname = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
-
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
-  );
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running....");
-  });
-}
-
-app.use(notFound);
-app.use(errorHandler);
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(
-  PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
-);
+//run server
+const serverPort = 5001
+app.listen(serverPort, async () => {
+  console.log(`Express web server running on port ${serverPort}`);
+  //database connection
+  try {
+    await sequelize.authenticate();
+    console.log("Connection has been established!");
+  } catch (err) {
+    console.err("Unable to connect to the database!", err);
+  }
+});
