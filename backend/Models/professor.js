@@ -5,16 +5,27 @@ const Professor = sequelize.define(
     "Professor",
     {
         id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true
         },
-        firstName: DataTypes.STRING,
-        lastName: {
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        password: {
             type: DataTypes.STRING,
             allowNull: false
         }
     },
+    {
+        timestamps: false
+    }
 )
 
 export { Professor }
