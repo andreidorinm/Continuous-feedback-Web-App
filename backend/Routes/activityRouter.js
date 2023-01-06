@@ -1,109 +1,26 @@
 import express from "express";
-import {Activity} from "../Models/activity.js";
+import * as activityController from "../Controllers/activityController.js"
+import * as feedbackController from "../Controllers/feedbackController.js"
+import * as studentController from "../Controllers/studentController.js"
 
 const activityRouter = express.Router();
 
-//get all activities
-activityRouter.get("/allActivities", async (request, response, next) => {
-    try {
-      const activities = await Activity.findAll();
-      if (activities.length > 0) {
-        response.json(activities);
-      } else {
-        response.sendStatus(204);
-      }
-    } catch (error) {
-      next(error);
-    }
-  });
+//get activity by id
+activityRouter.get("/:activityId", activityController.getActivityById);
 
-//add new activity
-activityRouter.post("/addNewActivity", async (request, response, next) => {
-    try {
-      const activity = await Activity.create(request.body);
-      response.status(201).location(activity.id).send();
-    } catch (error) {
-      next(error);
-    }
-  });
+//insert new activity
+activityRouter.post("/", activityController.insertActivity);
 
-  //get activity's id
-  activityRouter.get(
-    "/:activityId",
-    async (request, response, next) => {
-      try {
-        const activity = await Activity.findByPk(request.params.activityId);
-          if (activity) {
-            response.json(activity);
-          } else {
-            response.sendStatus(404);
-          }
-      } catch (error) {
-        next(error);
-      }
-    }
-  );
+//update an activity
+activityRouter.put("/:activityId", activityController.updateActivity)
 
-  //get feedback by activity
-  activityRouter.get(
-    "/:activityId/feedback",
-    async (request, response, next) => {
-      try {
-        const activity = await Activity.findByPk(request.params.activityId);
-        if (activity) {
-          const feedback = await activity.getFeedback();
-          if (feedback.length > 0) {
-            response.json(feedback);
-          } else {
-            response.sendStatus(204);
-          }
-        } else {
-          response.sendStatus(404);
-        }
-      } catch (error) {
-        next(error);
-      }
-    }
-  );
+//delete an activity
+activityRouter.delete("/:activityId", activityController.deleteActivity);
 
-  //DE VERIFICAT
-  //delete the activity
-  activityRouter.delete(
-    "/:activityId",
-    async (request, response, next) => { 
-      try {
-        const activity = await Activity.findByPk(request.params.activityId);
-        if (activity) {
-            await activity.destroy();
-            response.sendStatus(204);
-          } else {
-            response.sendStatus(404);
-          }
-        } 
-        catch (error) {
-        next(error);
-      }
-    }
-  );
+//get all students by activity id
+activityRouter.get("/:activityId/students", studentController.getStudentsByActivity)
 
-  //get students by activity
-  activityRouter.get(
-    "/:activityId/students",
-    async (request, response, next) => {
-      try {
-        const activity = await Activity.findByPk(request.params.activityId);
-        if (activity) {
-          const students = await activity.getStudents();
-          if (students.length > 0) {
-            response.json(students);
-          } else {
-            response.sendStatus(204);
-          }
-        } else {
-          response.sendStatus(404);
-        }
-      } catch (error) {
-        next(error);
-      }
-    }
-  );
+//get all feedback by activity id
+activityRouter.get("/:activityId/feedback", feedbackController.getFeedbackByActivity)
+
+export { activityRouter }
