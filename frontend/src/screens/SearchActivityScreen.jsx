@@ -18,6 +18,7 @@ const ActivityScreen = () => {
         setResults(response.data.data);
         if (response.data.data.length > 0) {
           navigate(`/activities/${response.data.data[0].id}`, { state: { activity: response.data.data[0] } });
+          location.reload();
         }
       })
       .catch(error => {
@@ -29,13 +30,6 @@ const ActivityScreen = () => {
     <form onSubmit={handleSubmit}>
       <input type="text" value={searchTerm} onChange={handleChange} />
       <button type="submit">Search</button>
-      {results.length > 0 && (
-        <ul>
-          {results.map(result => (
-            <li key={result.id}>{result.title}</li>
-          ))}
-        </ul>
-      )}
     </form>
   );
 }
