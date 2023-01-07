@@ -8,6 +8,12 @@ import {
   activityUpdateReducer,
 } from '../reducers/activityReducers';
 import { feedbackListReducer } from '../reducers/feedbackReducers';
+import { participationCreateReducer } from '../reducers/participationReducers';
+import { professorListReducer } from '../reducers/professorReducers';
+import {
+  studentListReducer,
+  studentByActivityReducer,
+} from '../reducers/studentsReducer';
 
 const reducer = combineReducers({
   activityList: activityListReducer,
@@ -15,9 +21,19 @@ const reducer = combineReducers({
   activityCreate: activityCreateReducer,
   activityUpdate: activityUpdateReducer,
   feedbackList: feedbackListReducer,
+  participationCreate: participationCreateReducer,
+  professorList: professorListReducer,
+  studentList: studentListReducer,
+  studentByActivity: studentByActivityReducer,
 });
 
-const initialState = {};
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null;
+
+const initialState = {
+  userLogin: { userInfo: userInfoFromStorage },
+};
 
 const middleware = [thunk];
 
