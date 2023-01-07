@@ -4,6 +4,6 @@ import * as feedbackController from '../Controllers/feedbackController.js';
 const feedbackRouter = express.Router();
 
 //insert new feedback
-feedbackRouter.post('/:feedbackId', feedbackController.insertFeedback);
+feedbackRouter.post('/feedback', feedbackController.insertFeedback);
 
 export { feedbackRouter };
