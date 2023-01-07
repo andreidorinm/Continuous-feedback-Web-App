@@ -1,4 +1,5 @@
 import { sequelize } from '../sequelize.js';
+import { DataTypes } from 'sequelize';
 
 const Student = sequelize.define(
   'Student',
