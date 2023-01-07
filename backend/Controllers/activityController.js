@@ -87,6 +87,12 @@ const searchActivities = async (req, res, next) => {
           [Sequelize.Op.like]: `%${searchTerm}%`,
         },
       },
+      include: [
+        {
+          model: Professor,
+          as: 'professor',
+        },
+      ],
     });
     if (activities.length > 0) {
       res.status(200).json({ data: activities });
