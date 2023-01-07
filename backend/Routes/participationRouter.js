@@ -1,9 +1,9 @@
-import express from 'express';
-import * as participationController from '../Controllers/participationController.js';
+import express from "express";
+import * as participationController from "../Controllers/participationController.js"
 
-const participationRouter = express.Router();
+const participationRouter = express.Router()
 
 //insert new participation
-participationRouter.post('/', participationController.insertParticipation);
+participationRouter.post("/", participationController.insertParticipation)
 
-export { participationRouter };
+export { participationRouter }
