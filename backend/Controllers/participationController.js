@@ -1,4 +1,4 @@
-import { Participation } from '../models/participation.js';
+import { Participation } from '../Models/participation.js';
 
 //insert a new participation
 const insertParticipation = async (req, res, next) => {

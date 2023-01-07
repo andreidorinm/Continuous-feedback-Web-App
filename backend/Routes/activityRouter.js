@@ -1,7 +1,7 @@
 import express from 'express';
-import * as activityController from '../controllers/activityController.js';
-import * as feedbackController from '../controllers/feedbackController.js';
-import * as studentController from '../controllers/studentController.js';
+import * as activityController from '../Controllers/activityController.js';
+import * as feedbackController from '../Controllers/feedbackController.js';
+import * as studentController from '../Controllers/studentController.js';
 
 const activityRouter = express.Router();
 

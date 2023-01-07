@@ -1,4 +1,4 @@
-import { Feedback } from '../models/feedback.js';
+import { Feedback } from '../Models/feedback.js';
 
 //get all feedback by activity id
 const getFeedbackByActivity = async (req, res, next) => {

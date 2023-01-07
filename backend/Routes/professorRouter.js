@@ -1,6 +1,6 @@
 import express from 'express';
-import * as professorController from '../controllers/professorController.js';
-import * as activityController from '../controllers/activityController.js';
+import * as professorController from '../Controllers/professorController.js';
+import * as activityController from '../Controllers/activityController.js';
 
 const professorRouter = express.Router();
 

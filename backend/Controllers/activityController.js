@@ -1,5 +1,5 @@
-import { Activity } from '../models/activity.js';
-import { Professor } from '../models/professor.js';
+import { Activity } from '../Models/activity.js';
+import { Professor } from '../Models/professor.js';
 
 //get activities by professor id
 const getActivitiesByProfessor = async (req, res, next) => {

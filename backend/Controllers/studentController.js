@@ -1,5 +1,5 @@
-import { Student } from '../models/student.js';
-import { Participation } from '../models/participation.js';
+import { Student } from '../Models/student.js';
+import { Participation } from '../Models/participation.js';
 
 //get all students by activity id
 const getStudentsByActivity = async (req, res, next) => {

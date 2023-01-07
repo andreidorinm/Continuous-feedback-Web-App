@@ -1,4 +1,4 @@
-import { Professor } from '../models/professor.js';
+import { Professor } from '../Models/professor.js';
 
 //get professor by id
 const getProfessorById = async (req, res, next) => {

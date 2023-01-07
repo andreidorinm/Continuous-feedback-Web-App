@@ -1,10 +1,10 @@
 import { sequelize } from '../sequelize.js';
 
-import { Professor } from '../models/professor.js';
-import { Student } from '../models/student.js';
-import { Activity } from '../models/activity.js';
-import { Feedback } from '../models/feedback.js';
-import { Participation } from '../models/participation.js';
+import { Professor } from '../Models/professor.js';
+import { Student } from '../Models/student.js';
+import { Activity } from '../Models/activity.js';
+import { Feedback } from '../Models/feedback.js';
+import { Participation } from '../Models/participation.js';
 
 //recreate database
 const createDatabase = async (req, res, next) => {

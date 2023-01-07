@@ -1,5 +1,5 @@
 import express from 'express';
-import * as mainController from '../controllers/mainController.js';
+import * as mainController from '../Controllers/mainController.js';
 
 import { professorRouter } from './professorRouter.js';
 import { studentRouter } from './studentRouter.js';
