@@ -1,6 +1,6 @@
 import { Participation } from '../models/participation.js';
 
-//insert new participation
+//insert a new participation
 const insertParticipation = async (req, res, next) => {
   try {
     const participation = await Participation.create({
