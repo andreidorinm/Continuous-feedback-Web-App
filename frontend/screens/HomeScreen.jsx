@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-const HomeScreen = ({ match }: { match: any }) => {
-    const feedBackList = useSelector((state: any) => state.feedBackList)
+const HomeScreen = ({ match }) => {
+    const feedBackList = useSelector((state) => state.feedBackList)
     const dispatch = useDispatch()
 
     useEffect(() => {
