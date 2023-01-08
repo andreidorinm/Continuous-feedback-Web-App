@@ -45,20 +45,36 @@ const ActivityScreen = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={searchTerm} onChange={handleChange} />
-        <button type="submit" >
-          Search
+    <form className='form-activity' 
+    onSubmit={handleSubmit}>
+      <div className="input-container">
+        <input
+          className="input"
+          type="text"
+          value={searchTerm}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="list-activities-container">
+        {results.length > 0 && searchTerm !== '' && (
+          <div className="list-activities">
+            {results.map((result) => (
+              <div
+                className="activity"
+                key={result.id}
+                onClick={() => handleClick(result)}
+              >
+                {result.title}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="button-submit">
+        <button type="submit">
+          <span className="search-text">Search</span>
         </button>
-      {results.length > 0 && searchTerm !== '' && (
-        <ul>
-          {results.map((result) => (
-            <li key={result.id} onClick={() => handleClick(result)}>
-              {result.title}
-            </li>
-          ))}
-        </ul>
-      )}
+      </div>
     </form>
   );
 };

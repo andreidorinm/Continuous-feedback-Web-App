@@ -1,0 +1,242 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  user-select: none;
+}
+
+h2 {
+  user-select: none;
+}
+
+.form-activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .input {
+    width: 800px;
+    height: 70px;
+    font-size: 45px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
+
+  .input {
+    width: 800px;
+    height: 70px;
+    font-size: 45px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+}
+
+.list-activities-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+
+  .list-activities {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 50px;
+    font-size: 45px;
+    line-height: 64px;
+    font-weight: 400;
+    margin-top: 20px;
+
+    .activity {
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .activity:hover {
+      color: #646cff;
+    }
+  }
+}
+
+.button-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+
+  .search-text {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 400;
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.emoji-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: poiner;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+
+  .section {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+
+    .emoji {
+      display: flex;
+      justify-content: center;
+      cursor: poiner;
+      user-select: none;
+      width: 400px;
+      height: 200px;
+
+      &.active {
+        background-color: #646cff;
+        box-shadow: 0 0 10px #646cff;
+      }
+
+      .emoji-image {
+        width: 180px;
+        height: 180px;
+        object-fit: contain;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+.text-send {
+  font-size: 1.8em;
+  line-height: 1.1;
+}
+
+.emoji-container:hover {
+  border-color: #646cff;
+}
+
+.emoji-container:focus,
+.emoji-container:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.feedback-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
+
+  .tick-mark {
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .checkmark__circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 2;
+      stroke-miterlimit: 10;
+      stroke: #7ac142;
+      fill: none;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+    .checkmark {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 2;
+      stroke: #fff;
+      stroke-miterlimit: 10;
+      margin: 10% auto;
+      box-shadow: inset 0px 0px 0px #7ac142;
+      animation: fill 0.4s ease-in-out 0.4s forwards,
+        scale 0.3s ease-in-out 0.9s both;
+    }
+    .checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+    @keyframes scale {
+      0%,
+      100% {
+        transform: none;
+      }
+      50% {
+        transform: scale3d(1.1, 1.1, 1);
+      }
+    }
+    @keyframes fill {
+      100% {
+        box-shadow: inset 0px 0px 0px 30px #7ac142;
+      }
+    }
+  }
+}
