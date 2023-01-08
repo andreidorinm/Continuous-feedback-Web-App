@@ -5,6 +5,7 @@ import SearchActivityScreen from './screens/SearchActivityScreen';
 import FeedbackScreen from './screens/FeedbackScreen';
 import HomeScreen from './screens/HomeScreen';
 import TermsOfServiceScreen from './screens/TermsOfServiceScreen';
+import LoginScreen from './screens/LoginScreen';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
     <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/terms" element={<TermsOfServiceScreen />} />
+        <Route path="/login-professor" element={<LoginScreen />} />
+        <Route path="/signup" element={<LoginScreen />} />
         <Route path="/activities" element={<SearchActivityScreen />} />
         <Route path="/activities/:id" element={<FeedbackScreen />} />
     </Routes>
