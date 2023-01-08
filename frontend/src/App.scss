@@ -7,10 +7,23 @@
 
 h1 {
   user-select: none;
+  white-space: nowrap;
 }
 
 h2 {
   user-select: none;
+}
+
+.modal {
+  position: absolute;
+  background-color: #4a1d4e;
+  width: 50%;
+  height: 70%;
+  margin-top: 100px;
+  margin-left: 460px;
+  border-radius: 10px;
+  border: 1px solid #646cff;
+  box-shadow: 0 0 10px #646cff;
 }
 
 .form-container {
@@ -183,13 +196,14 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 300px;
+  margin-top: 50px;
 
   .tick-mark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     .wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
     .checkmark__circle {
       stroke-dasharray: 166;
@@ -239,4 +253,33 @@ h2 {
       }
     }
   }
+}
+
+.button-close {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 60px;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.text-return-to-activities {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
