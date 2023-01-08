@@ -41,42 +41,45 @@ const FeedbackScreen = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>{activity.title}</h1>
-      <h2>Professor: {professorName}</h2>
-      <div className="emoji-container">
-        <div className="section">
-          <div
-            className={emoticon === 'smiley' ? 'emoji active' : 'emoji'}
-            onClick={() => setEmoticon('smiley')}
-          >
-            <Image src="/smiley.png" className="emoji-image" />
+    <>
+      <form onSubmit={handleSubmit}>
+        <h1>{activity.title}</h1>
+        <h2>Professor: {professorName}</h2>
+        <div className="emoji-container">
+          <div className="section">
+            <div
+              className={emoticon === 'smiley' ? 'emoji active' : 'emoji'}
+              onClick={() => setEmoticon('smiley')}
+            >
+              <Image src="/smiley.png" className="emoji-image" />
+            </div>
+            <div
+              className={emoticon === 'frowny' ? 'emoji active' : 'emoji'}
+              onClick={() => setEmoticon('frowny')}
+            >
+              <Image src="/frowny.png" className="emoji-image" />
+            </div>
           </div>
-          <div
-            className={emoticon === 'frowny' ? 'emoji active' : 'emoji'}
-            onClick={() => setEmoticon('frowny')}
-          >
-            <Image src="/frowny.png" className="emoji-image" />
+          <div className="section">
+            <div
+              className={emoticon === 'surprised' ? 'emoji active' : 'emoji'}
+              onClick={() => setEmoticon('surprised')}
+            >
+              <Image src="/surprised.png" className="emoji-image" />
+            </div>
+            <div
+              className={emoticon === 'confused' ? 'emoji active' : 'emoji'}
+              onClick={() => setEmoticon('confused')}
+            >
+              <Image src="/confused.png" className="emoji-image" />
+            </div>
           </div>
         </div>
-        <div className="section">
-          <div
-            className={emoticon === 'surprised' ? 'emoji active' : 'emoji'}
-            onClick={() => setEmoticon('surprised')}
-          >
-            <Image src="/surprised.png" className="emoji-image" />
-          </div>
-          <div
-            className={emoticon === 'confused' ? 'emoji active' : 'emoji'}
-            onClick={() => setEmoticon('confused')}
-          >
-            <Image src="/confused.png" className="emoji-image" />
-          </div>
-        </div>
-      </div>
-      <button type="submit">
-        <span className="text-send">Send Feedback</span></button>
-    </form>
+        <button type="submit">
+          <span className="text-send">Send Feedback</span>
+        </button>
+      </form>
+    </>
   );
 };
 

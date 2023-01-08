@@ -13,75 +13,75 @@ h2 {
   user-select: none;
 }
 
-.form-activity {
+.form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  .input {
-    width: 800px;
-    height: 70px;
-    font-size: 45px;
-    line-height: 24px;
-    font-weight: 400;
-  }
-}
-.input-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 300px;
-
-  .input {
-    width: 800px;
-    height: 70px;
-    font-size: 45px;
-    line-height: 24px;
-    font-weight: 400;
-  }
-}
-
-.list-activities-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 100px;
-
-  .list-activities {
+  margin-top: 150px;
+  .form-activity {
     display: flex;
     flex-direction: column;
-    width: 800px;
-    height: 50px;
-    font-size: 45px;
-    line-height: 64px;
-    font-weight: 400;
-    margin-top: 20px;
-
-    .activity {
-      user-select: none;
-      cursor: pointer;
-    }
-
-    .activity:hover {
-      color: #646cff;
-    }
-  }
-}
-
-.button-submit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 800px;
-
-  .search-text {
-    display: flex;
     justify-content: center;
-    font-size: 40px;
-    font-weight: 400;
+    align-items: center;
+    .input-container {
+      .input {
+        width: 800px;
+        height: 70px;
+        font-size: 45px;
+        line-height: 24px;
+        font-weight: 400;
+      }
+    }
+
+    .list-activities-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 75px;
+
+      .list-activities {
+        display: flex;
+        flex-direction: column;
+        width: 800px;
+        height: 50px;
+        font-size: 25px;
+        line-height: 64px;
+        font-weight: 400;
+        margin-top: 20px;
+
+        .activity {
+          user-select: none;
+          cursor: pointer;
+        }
+
+        .activity:hover {
+          color: #646cff;
+        }
+      }
+    }
+
+    .button-submit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 300px;
+
+      .search-text {
+        display: flex;
+        justify-content: center;
+        font-size: 25px;
+      }
+    }
+
+    .input {
+      width: 800px;
+      height: 70px;
+      font-size: 45px;
+      line-height: 24px;
+      font-weight: 400;
+    }
   }
 }
 
