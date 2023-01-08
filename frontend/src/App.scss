@@ -283,3 +283,92 @@ h2 {
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+  .emoji-container {
+    .section {
+      .emoji {
+        width: 300px;
+        height: 150px;
+
+        .emoji-image {
+          width: 120px;
+          height: 120px;
+        }
+      }
+    }
+  }
+  .modal {
+    margin-left: 350px;
+    margin-top: 160px;
+    width: 800px;
+  }
+
+  .modal-title {
+    margin-top: 30px;
+  }
+
+  .modal-footer {
+    margin-top: 30px;
+  }
+
+  .text-return-to-activities {
+    margin-top: 20px;
+  }
+
+  .feedback-success {
+    margin-top: 10px;
+  }
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+
+  .login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .signup-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+}
+
+.testimonial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-right: 50px;
+}
+
+.terms-of-service {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+
+  .section-terms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
