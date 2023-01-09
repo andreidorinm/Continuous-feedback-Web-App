@@ -54,7 +54,7 @@ const HomeScreen = () => {
   };
 
   const handleLoginStudent = () => {
-    navigate('/signup');
+    navigate('/login-student');
   };
   return (
     <>
