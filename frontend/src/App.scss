@@ -7,10 +7,23 @@
 
 h1 {
   user-select: none;
+  white-space: nowrap;
 }
 
 h2 {
   user-select: none;
+}
+
+.modal {
+  position: absolute;
+  background-color: #4a1d4e;
+  width: 50%;
+  height: 70%;
+  margin-top: 100px;
+  margin-left: 460px;
+  border-radius: 10px;
+  border: 1px solid #646cff;
+  box-shadow: 0 0 10px #646cff;
 }
 
 .form-container {
@@ -183,13 +196,14 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 300px;
+  margin-top: 50px;
 
   .tick-mark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     .wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
     .checkmark__circle {
       stroke-dasharray: 166;
@@ -238,5 +252,136 @@ h2 {
         box-shadow: inset 0px 0px 0px 30px #7ac142;
       }
     }
+  }
+}
+
+.button-close {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 60px;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.text-return-to-activities {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+
+  .login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .signup-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+}
+
+.testimonial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.terms-of-service {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+
+  .section-terms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.popper-container {
+  display: flex;
+  justify-content: center;
+  margin-top: -490px;
+
+  .popper-text-student {
+    margin-right: 540px;
+  }
+
+  .popper-text-professor {
+    margin-left: 540px;
+  }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+  .emoji-container {
+    .section {
+      .emoji {
+        width: 300px;
+        height: 150px;
+
+        .emoji-image {
+          width: 120px;
+          height: 120px;
+        }
+      }
+    }
+  }
+  .modal {
+    margin-left: 350px;
+    margin-top: 160px;
+    width: 800px;
+  }
+
+  .modal-title {
+    margin-top: 30px;
+  }
+
+  .modal-footer {
+    margin-top: 30px;
+  }
+
+  .text-return-to-activities {
+    margin-top: 20px;
+  }
+
+  .feedback-success {
+    margin-top: 10px;
   }
 }
