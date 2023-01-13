@@ -1,23 +1,32 @@
 import React, { useState } from 'react';
 import './screens.scss';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-function LoginProfessorScreen() {
+
+function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
+  
   function handleSubmit(event) {
     event.preventDefault();
-    // Send a request to the server to authenticate the user
-    authenticate(username, password).then((response) => {
-      if (response.success) {
-        // If the authentication is successful, redirect the user to the homepage
-        window.location.replace('/');
-      } else {
-        // If the authentication fails, show an error message
-        alert('Incorrect username or password');
-      }
-    });
+    return axios.post('http://localhost:5001/api/professors/login-professor', {
+        email: username,
+        password: password
+    })
+      .then((response) => {
+        if (response.data.data.id) {
+          const professorId = response.data.data.id;
+          console.log(professorId);
+          navigate(`/professors/${professorId.id}`, {state: { professorId }});
+        } else {
+          alert('Incorrect username or password');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   return (
@@ -56,10 +65,6 @@ function LoginProfessorScreen() {
               />
             </label>
           </div>
-          <span>Don't have an account?</span>
-          <Link className="link-signup" to="/signup-professor" replace>
-            <span className="text-signup">Sign up here</span>
-          </Link>
           <div className="button-submit">
             <button type="submit">
               <span className="button-text">Log in</span>
@@ -71,4 +76,4 @@ function LoginProfessorScreen() {
   );
 }
 
-export default LoginProfessorScreen;
+export default LoginScreen;

@@ -35,7 +35,26 @@ const getStudentById = async (req, res, next) => {
     }
 };
 
+const loginStudent = async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
+      const student = await Student.findOne({ where: { email: email } });
+      if (student) {
+        if (student.password === password) {
+          res.status(200).json({ data: student });
+        } else {
+          res.status(401).json({ message: 'Invalid password.' });
+        }
+      } else {
+        res.status(404).json({ message: 'Student not found.' });
+      }
+    } catch (error) {
+      next(error);
+    }
+  };
+
 export {
     getStudentById,
-    getStudentsByActivity
+    getStudentsByActivity,
+    loginStudent
 }

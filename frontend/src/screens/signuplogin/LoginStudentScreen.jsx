@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function LoginStudentScreen() {
   const [username, setUsername] = useState('');
@@ -7,17 +7,28 @@ function LoginStudentScreen() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // Send a request to the server to authenticate the user
-    authenticate(username, password).then((response) => {
-      if (response.success) {
-        // If the authentication is successful, redirect the user to the homepage
-        window.location.replace('/');
+    return axios.get('http://localhost:5001/api/professors')
+    .then((response) => {
+      const professors = response.data.data;
+      let authenticated = false;
+      for (let i = 0; i < professors.length; i++) {
+        if (username === professors[i].email && password === professors[i].password) {
+          authenticated = true;
+          break;
+        }
+      }
+      if (authenticated) {
+        // If the authentication is successful, navigate to the professors screen
+        navigate("/professors");
       } else {
         // If the authentication fails, show an error message
         alert('Incorrect username or password');
       }
-    });
-  }
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+  };
 
   return (
     <>

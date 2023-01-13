@@ -9,6 +9,7 @@ import LoginProfessorScreen from './screens/signuplogin/LoginProfessorScreen';
 import LoginStudentScreen from './screens/signuplogin/LoginStudentScreen';
 import SignupStudentScreen from './screens/signuplogin/SignupStudentScreen';
 import SignupProfessorScreen from './screens/signuplogin/SignupProfessorScreen';
+import ProfessorScreen from './screens/ProfessorScreen';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login-professor" element={<LoginProfessorScreen />} />
         <Route path="/signup-student" element={<SignupStudentScreen />} />
         <Route path="/signup-professor" element={<SignupProfessorScreen />} />
+        <Route path="/professors/:id" element={<ProfessorScreen />} />
         <Route path="/activities" element={<SearchActivityScreen />} />
         <Route path="/activities/:id" element={<FeedbackScreen />} />
     </Routes>
