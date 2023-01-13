@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+
 
 const SignupProfessorScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const { register, handleSubmit, formState: { errors }} = useForm();
+
 
   function handleSubmit(event) {
     event.preventDefault();
