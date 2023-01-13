@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import './screens.scss';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 function LoginStudentScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const [studentName, setStudentName] = useState('');
+  const navigate = useNavigate();
+  
   function handleSubmit(event) {
     event.preventDefault();
-    return axios.get('http://localhost:5001/api/professors')
-    .then((response) => {
-      const professors = response.data.data;
-      let authenticated = false;
-      for (let i = 0; i < professors.length; i++) {
-        if (username === professors[i].email && password === professors[i].password) {
-          authenticated = true;
-          break;
+    return axios.post('http://localhost:5001/api/students/login-student', {
+        email: username,
+        password: password
+    })
+      .then((response) => {
+        if (response.data.data.id) {
+          setStudentName(response.data.data.name);
+          navigate('/activities', { state: { studentName: response.data.data.name } });
+        } else {
+          alert('Incorrect username or password');
         }
-      }
-      if (authenticated) {
-        // If the authentication is successful, navigate to the professors screen
-        navigate("/professors");
-      } else {
-        // If the authentication fails, show an error message
-        alert('Incorrect username or password');
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    })
-  };
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   return (
     <>
@@ -42,7 +42,6 @@ function LoginStudentScreen() {
       <h1>
         <span className="text-title">Welcome Student</span>
       </h1>
-
       <div className="form-login-container">
         <form className="form-login" onSubmit={handleSubmit}>
           <div className="input-container">

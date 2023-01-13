@@ -35,6 +35,16 @@ const getStudentById = async (req, res, next) => {
     }
 };
 
+//get all professors
+const getAllStudents = async (req, res, next) => {
+  try {
+    const students = await Student.findAll();
+    res.status(200).json({ data: students });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const loginStudent = async (req, res, next) => {
     try {
       const { email, password } = req.body;
@@ -56,5 +66,6 @@ const loginStudent = async (req, res, next) => {
 export {
     getStudentById,
     getStudentsByActivity,
+    getAllStudents,
     loginStudent
 }

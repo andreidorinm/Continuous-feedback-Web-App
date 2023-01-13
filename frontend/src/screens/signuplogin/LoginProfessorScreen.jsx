@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-function LoginScreen() {
+function LoginProfessorScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function LoginScreen() {
         if (response.data.data.id) {
           const professorId = response.data.data.id;
           console.log(professorId);
-          navigate(`/professors/${professorId.id}`, {state: { professorId }});
+          navigate(`/professors/${professorId}`, {state: { professorId }});
         } else {
           alert('Incorrect username or password');
         }
@@ -65,6 +65,10 @@ function LoginScreen() {
               />
             </label>
           </div>
+          <span>Don't have an account?</span>
+          <Link className="link-signup" to="/signup-student" replace>
+            <span className="text-signup">Sign up here</span>
+          </Link>
           <div className="button-submit">
             <button type="submit">
               <span className="button-text">Log in</span>
@@ -76,4 +80,4 @@ function LoginScreen() {
   );
 }
 
-export default LoginScreen;
+export default LoginProfessorScreen;

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const ActivityScreen = () => {
+const SearchActivityScreen = ({studentName}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     axios
@@ -46,15 +47,15 @@ const ActivityScreen = () => {
 
   return (
     <>
-    <div className="background">
-      <div className="light"></div>
-      <div className="circle-one"></div>
-      <div className="circle-two"></div>
-      <div className="circle-three"></div>
-      <div className="circle-four"></div>
-    </div>
+      <div className="background">
+        <div className="light"></div>
+        <div className="circle-one"></div>
+        <div className="circle-two"></div>
+        <div className="circle-three"></div>
+        <div className="circle-four"></div>
+      </div>
       <h1>
-        <span className="text-title">Welcome Student Name</span>
+        <span className="text-title">Welcome {studentName}</span>
       </h1>
       <h2>
         <span className="text-subtitle">Please search for an activity</span>
@@ -95,4 +96,4 @@ const ActivityScreen = () => {
   );
 };
 
-export default ActivityScreen;
+export default SearchActivityScreen;
