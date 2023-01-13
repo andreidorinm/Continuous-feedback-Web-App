@@ -11,7 +11,6 @@
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "axios": "^1.2.2",
-    "framer-motion": "^7.10.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",

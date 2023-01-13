@@ -46,8 +46,15 @@ const ActivityScreen = () => {
 
   return (
     <>
+    <div className="background">
+      <div className="light"></div>
+      <div className="circle-one"></div>
+      <div className="circle-two"></div>
+      <div className="circle-three"></div>
+      <div className="circle-four"></div>
+    </div>
       <h1>
-        <span className="text-title">Welcome to Feedback App</span>
+        <span className="text-title">Welcome Student Name</span>
       </h1>
       <h2>
         <span className="text-subtitle">Please search for an activity</span>

@@ -31,12 +31,22 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 270px;
+  margin-left: 600px;
+  width: 900px;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.13);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   .form-activity {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     .input-container {
       .input {
         width: 800px;
@@ -96,6 +106,18 @@ h2 {
       font-weight: 400;
     }
   }
+}
+
+input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .logo {
@@ -349,6 +371,60 @@ h2 {
   }
 }
 
+.background {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  .light {
+    position: absolute;
+    width: 333.7px;
+    height: 633.7px;
+    background: #1eeda2;
+    mix-blend-mode: screen;
+    filter: blur(308.518px);
+  }
+
+  .circle-one {
+    position: absolute;
+    margin-left: -450px;
+    margin-top: -150px;
+    width: 295px;
+    height: 295px;
+    border-radius: 50%;
+    background: #1eeda2;
+  }
+
+  .circle-two {
+    position: absolute;
+    margin-left: 550px;
+    margin-top: 400px;
+    width: 159px;
+    height: 159px;
+    border-radius: 50%;
+    background: #1eeda2;
+  }
+
+  .circle-three {
+    position: absolute;
+    margin-left: -850px;
+    margin-top: 550px;
+    width: 307px;
+    height: 307px;
+    border-radius: 50%;
+    background: #1eeda2;
+  }
+
+  .circle-four {
+    position: absolute;
+    margin-left: 950px;
+    margin-top: -150px;
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: #1eeda2;
+  }
+}
+
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
   .emoji-container {
     .section {
@@ -383,5 +459,59 @@ h2 {
 
   .feedback-success {
     margin-top: 10px;
+  }
+
+  .background {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    .light {
+      position: absolute;
+      width: 333.7px;
+      height: 633.7px;
+      background: #1eeda2;
+      mix-blend-mode: screen;
+      filter: blur(308.518px);
+    }
+
+    .circle-one {
+      position: absolute;
+      margin-left: -450px;
+      margin-top: -150px;
+      width: 295px;
+      height: 295px;
+      border-radius: 50%;
+      background: #1eeda2;
+    }
+
+    .circle-two {
+      position: absolute;
+      margin-left: 550px;
+      margin-top: 400px;
+      width: 159px;
+      height: 159px;
+      border-radius: 50%;
+      background: #1eeda2;
+    }
+
+    .circle-three {
+      position: absolute;
+      margin-left: -850px;
+      margin-top: 550px;
+      width: 307px;
+      height: 307px;
+      border-radius: 50%;
+      background: #1eeda2;
+    }
+
+    .circle-four {
+      position: absolute;
+      margin-left: 950px;
+      margin-top: -150px;
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      background: #1eeda2;
+    }
   }
 }
