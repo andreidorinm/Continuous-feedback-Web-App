@@ -22,8 +22,8 @@ function App() {
         <Route path="/signup-student" element={<SignupStudentScreen />} />
         <Route path="/signup-professor" element={<SignupProfessorScreen />} />
         <Route path="/professors/:id" element={<ProfessorScreen />} />
-        <Route path="/activities" element={<SearchActivityScreen />} />
-        <Route path="/activities/:id" element={<FeedbackScreen />} />
+        <Route path="/activities/:id" element={<SearchActivityScreen />} />
+        <Route path="/activity/:id" element={<FeedbackScreen />} />
     </Routes>
     </BrowserRouter>
   );

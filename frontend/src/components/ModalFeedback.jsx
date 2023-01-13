@@ -50,10 +50,8 @@ function ModalFeedback(props) {
             <h2 className="modal-footer">
               Do you want to make another feedback?
             </h2>
-            <Link to="/activities">
-              <span className="text-return-to-activities">
-                Return to Activities
-              </span>
+            <Link to="/">
+              <span className="text-return-to-activities">Return to Home</span>
             </Link>
             <Button className="button-close" onClick={props.onHide}>
               <span>Close</span>

@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 function LoginStudentScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [studentName, setStudentName] = useState('');
   const navigate = useNavigate();
   
   function handleSubmit(event) {
@@ -19,8 +18,9 @@ function LoginStudentScreen() {
     })
       .then((response) => {
         if (response.data.data.id) {
-          setStudentName(response.data.data.name);
-          navigate('/activities', { state: { studentName: response.data.data.name } });
+          const studentId = response.data.data.id;
+          console.log(studentId);
+          navigate(`/activities/${studentId}`, {state: { studentId }});
         } else {
           alert('Incorrect username or password');
         }
