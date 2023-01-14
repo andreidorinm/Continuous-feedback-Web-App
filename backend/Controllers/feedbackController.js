@@ -5,7 +5,8 @@ const getFeedbackByActivity = async (req, res, next) => {
     try {
         const activityId = req.params.activityId;
         const feedback = await Feedback.findAll({
-            where: { activityId }
+            where: { activityId },
+            order: [['timeStamp', 'DESC']]
         });
         if (feedback.length === 0)
             res.status(404).json({ message: 'No feedback found.' })
