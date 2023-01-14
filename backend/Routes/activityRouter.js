@@ -10,6 +10,7 @@ activityRouter.get('/search', activityController.searchActivities);
 //get activity by id
 activityRouter.get('/:activityId', activityController.getActivityById);
 
+//get all activities
 activityRouter.get('/', activityController.getAllActivities);
 
 //insert new activity
