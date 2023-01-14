@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Image from 'react-bootstrap/Image';
+import Modal from '../components/ModalFeedback';
+import ModalFeedback from '../components/ModalFeedback';
 
 const FeedbackScreen = () => {
   const location = useLocation();
   const activity = location.state.activity;
   const [emoticon, setEmoticon] = useState('smiley'); // set initial emoticon value
   const [professorName, setProfessorName] = useState('');
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false); // Initialize isModalOpen state variable
 
   useEffect(() => {
     // Make an API request to get the professor's information
@@ -27,13 +28,13 @@ const FeedbackScreen = () => {
   const handleSubmit = (event) => {
     event.preventDefault(); // prevent default form submission action (page refresh)
     axios
-      .post(`http://localhost:5001/api/activities/${activity.id}/feedback`, {
+      .post(`http://localhost:5001/api/activities/${activity.id}`, {
         activityId: activity.id,
         emoticon: emoticon,
       })
       .then((response) => {
         console.log(response);
-        navigate('/feedback'); // redirect to a different page on successful submission
+        setIsModalOpen(true)
       })
       .catch((error) => {
         console.error(error);
@@ -42,6 +43,7 @@ const FeedbackScreen = () => {
 
   return (
     <>
+      <ModalFeedback show={isModalOpen} onHide={() => setIsModalOpen(false)} />
       <form onSubmit={handleSubmit}>
         <h1>{activity.title}</h1>
         <h2>Professor: {professorName}</h2>
@@ -75,7 +77,7 @@ const FeedbackScreen = () => {
             </div>
           </div>
         </div>
-        <button type="submit">
+        <button className='button-feedback' type="submit" onClick={() => setIsModalOpen(true)}>
           <span className="text-send">Send Feedback</span>
         </button>
       </form>

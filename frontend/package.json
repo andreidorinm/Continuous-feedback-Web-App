@@ -9,12 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
     "axios": "^1.2.2",
-    "framer-motion": "^7.10.2",
+    "chart.js": "^4.1.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.41.5",
     "react-icons": "^4.7.1",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-popper": "^2.3.0",
     "react-router-dom": "^6.6.1",
     "sass": "^1.57.1"
   },

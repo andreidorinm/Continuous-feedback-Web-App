@@ -16,6 +16,21 @@ const getFeedbackByActivity = async (req, res, next) => {
     }
 };
 
+//get all feedback
+const getAllFeedback = async (req, res, next) => {
+    try {
+        const feedback = await Feedback.findAll();
+        if (feedback.length === 0)
+            res.status(404).json({ message: 'No feedback found.' })
+        else
+            res.status(200).json({ data: feedback });
+    } catch (error) {
+        next(error);
+    }
+};
+
+
+
 //insert new feedback
 const insertFeedback = async (req, res, next) => {
     try {
@@ -31,5 +46,6 @@ const insertFeedback = async (req, res, next) => {
 
 export {
     getFeedbackByActivity,
-    insertFeedback
+    insertFeedback,
+    getAllFeedback
 }

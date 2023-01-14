@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const ActivityScreen = () => {
+const SearchActivityScreen = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { studentId } = location.state;
+  const [student, setStudent] = useState({});
 
   useEffect(() => {
+    axios.get(`http://localhost:5001/api/students/${studentId}`).then((response) => {
+      setStudent(response.data.data);
+    });
     axios
       .get(`http://localhost:5001/api/activities/search?q=${searchTerm}`)
       .then((response) => {
@@ -16,7 +22,7 @@ const ActivityScreen = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [searchTerm]);
+  }, [searchTerm], [studentId]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,7 +31,7 @@ const ActivityScreen = () => {
       .then((response) => {
         setResults(response.data.data);
         if (response.data.data.length > 0) {
-          navigate(`/activities/${response.data.data[0].id}`, {
+          navigate(`/activity/${response.data.data[0].id}`, {
             state: { activity: response.data.data[0] },
           });
           location.reload();
@@ -41,13 +47,20 @@ const ActivityScreen = () => {
   };
 
   const handleClick = (activity) => {
-    navigate(`/activities/${activity.id}`, { state: { activity } });
+    navigate(`/activity/${activity.id}`, { state: { activity } });
   };
 
   return (
     <>
+      <div className="background">
+        <div className="light"></div>
+        <div className="circle-one"></div>
+        <div className="circle-two"></div>
+        <div className="circle-three"></div>
+        <div className="circle-four"></div>
+      </div>
       <h1>
-        <span className="text-title">Welcome to Feedback App</span>
+        <span className="text-title">Welcome {student.name}</span>
       </h1>
       <h2>
         <span className="text-subtitle">Please search for an activity</span>
@@ -88,4 +101,4 @@ const ActivityScreen = () => {
   );
 };
 
-export default ActivityScreen;
+export default SearchActivityScreen;
