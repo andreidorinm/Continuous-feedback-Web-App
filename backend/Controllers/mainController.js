@@ -5,6 +5,7 @@ import { Student } from "../Models/student.js";
 import { Activity } from "../Models/activity.js";
 import { Feedback } from "../Models/feedback.js";
 import { Participation } from "../Models/participation.js";
+import bcrypt from "bcrypt"
 
 //recreate database
 const createDatabase = async (req, res, next) => {
@@ -24,13 +25,18 @@ const importData = async (req, res, next) => {
     try {
         const { professors, students, activities, feedback, participation } = req.body;
         const errors = []
+        const saltRounds = 10
 
-        if (professors)
+        if (professors) {
             for (const professor of professors) {
+                let plainPassword
                 try {
+                    plainPassword = professor.password
+                    professor.password = await bcrypt.hash(plainPassword, saltRounds);
                     await Professor.create(professor);
                 }
                 catch (err) {
+                    professor.password = plainPassword
                     errors.push({
                         model: 'professor',
                         instance: professor,
@@ -38,12 +44,17 @@ const importData = async (req, res, next) => {
                     })
                 }
             }
+        }
         if (students)
             for (const student of students) {
+                let plainPassword
                 try {
+                    plainPassword = student.password
+                    student.password = await bcrypt.hash(plainPassword, saltRounds);
                     await Student.create(student);
                 }
                 catch (err) {
+                    student.password = plainPassword
                     errors.push({
                         model: 'student',
                         instance: student,
