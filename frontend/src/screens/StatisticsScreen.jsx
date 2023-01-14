@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import '../screens/signuplogin/screens.scss';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-
+import { Line, Bar } from 'react-chartjs-2';
 
 function StatisticsScreen() {
-  
+  const [chartData, setChartData] = useState({});
+
   return (
     <>
       <div className="background">
