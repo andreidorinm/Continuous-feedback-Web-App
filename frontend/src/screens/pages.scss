@@ -19,16 +19,15 @@
     align-items: space-between;
     margin: 18px;
 
-    .button-update {
-      height: 50px;
-      width: 55px;
-
+    .btn-feedback {
+      height: 60px;
+      width: 125px;
       cursor: pointer;
     }
 
-    .button-delete {
-      height: 50px;
-      width: 55px;
+    .btn-table {
+      height: 55px;
+      width: 60px;
       cursor: pointer;
     }
   }
@@ -41,4 +40,58 @@
       margin: 20px;
     }
   }
+}
+
+.button-create {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -140px;
+  margin-left: 60px;
+}
+
+.form-create-activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -50px;
+}
+
+.modal-title-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
+}
+
+.form-create-activity {
+  display: flex;
+  flex-direction: column;
+  .section-body,
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 70px;
+
+    .form-group {
+      margin-left:50px;
+      margin-right: 50px;
+
+      .form-control {
+        width: 300px;
+        height: 40px;
+      }
+    }
+  }
+}
+
+.button-create {
+  width: 150px;
+  height: 50px;
+  margin-top: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
 }

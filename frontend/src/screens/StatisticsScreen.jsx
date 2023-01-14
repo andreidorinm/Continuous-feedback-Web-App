@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-function CreateActivity() {
+function StatisticsScreen() {
   
   return (
     <>
@@ -21,4 +21,4 @@ function CreateActivity() {
   );
 }
 
-export default CreateActivity;
+export default StatisticsScreen;

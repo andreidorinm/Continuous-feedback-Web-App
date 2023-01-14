@@ -10,6 +10,8 @@ import LoginStudentScreen from './screens/signuplogin/LoginStudentScreen';
 import SignupStudentScreen from './screens/signuplogin/SignupStudentScreen';
 import SignupProfessorScreen from './screens/signuplogin/SignupProfessorScreen';
 import ProfessorScreen from './screens/ProfessorScreen';
+import StatisticsScreen from './screens/StatisticsScreen';
+import CreateActivity from './screens/CreateActivityScreen';
 
 function App() {
   return (
@@ -24,6 +26,11 @@ function App() {
         <Route path="/professors/:id" element={<ProfessorScreen />} />
         <Route path="/activities/:id" element={<SearchActivityScreen />} />
         <Route path="/activity/:id" element={<FeedbackScreen />} />
+        <Route path="/statistics" element={<StatisticsScreen />} />
+        {/* <Route path="/create-activity" element={<CreateActivity />} /> */}
+
+        
+
     </Routes>
     </BrowserRouter>
   );
