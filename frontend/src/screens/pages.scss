@@ -1,0 +1,41 @@
+.container-activities {
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+ 
+    .container-activity-title {
+        display: flex;
+        margin-top:55px;
+    }
+  .container-buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between;
+    margin:25px;
+
+    .button-create {
+      height: 50px;
+      width: 55px;
+      cursor: pointer;
+    }
+
+    .button-update {
+      height: 50px;
+      width: 55px;
+
+      cursor: pointer;
+    }
+
+    .button-delete {
+      height: 50px;
+      width: 55px;
+      cursor: pointer;
+    }
+  }
+}
