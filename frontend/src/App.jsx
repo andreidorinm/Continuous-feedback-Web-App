@@ -26,7 +26,7 @@ function App() {
         <Route path="/professors/:id" element={<ProfessorScreen />} />
         <Route path="/activities/:id" element={<SearchActivityScreen />} />
         <Route path="/activity/:id" element={<FeedbackScreen />} />
-        <Route path="/statistics" element={<StatisticsScreen />} />
+        <Route path="/activities/:id/feedback" element={<StatisticsScreen />} />
         {/* <Route path="/create-activity" element={<CreateActivity />} /> */}
 
         
