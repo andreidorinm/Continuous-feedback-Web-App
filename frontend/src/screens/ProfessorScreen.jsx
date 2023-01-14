@@ -7,6 +7,7 @@ import {
   BsFillTrashFill,
   BsFillPencilFill,
   BsFillArchiveFill,
+  BsFillBarChartFill
 } from 'react-icons/bs';
 import Modal from 'react-bootstrap/Modal';
 import './pages.scss';
@@ -76,6 +77,10 @@ function ProfessorScreen() {
     navigate('/create-activity');
   };
 
+  const handleStatistics = () => {
+    navigate('/statistics');
+  };
+
   return (
     <>
       <h1>Welcome, {professor.name}</h1>
@@ -112,13 +117,6 @@ function ProfessorScreen() {
                   </Modal>
                   <div className="container-buttons">
                     <Button
-                      className="button-create"
-                      variant="success"
-                      onClick={handleCreate}
-                    >
-                      <BsFillArchiveFill />
-                    </Button>
-                    <Button
                       className="button-update"
                       variant="warning"
                       onClick={() => handleUpdate(activity.id)}
@@ -138,6 +136,22 @@ function ProfessorScreen() {
             ))}
           </tbody>
         </Table>
+        <div className="container-btn">
+          <Button
+            className="button-create"
+            variant="success"
+            onClick={handleCreate}
+          >
+            <BsFillArchiveFill />
+          </Button>
+          <Button
+            className="button-create"
+            variant="success"
+            onClick={handleStatistics}
+          >
+            <BsFillBarChartFill />
+          </Button>
+        </div>
       </div>
     </>
   );
