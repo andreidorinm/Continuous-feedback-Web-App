@@ -1,24 +1,34 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignupProfessorScreen = () => {
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
 
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    // Send a request to the server to authenticate the user
-    authenticate(username, password).then((response) => {
-      if (response.success) {
-        // If the authentication is successful, redirect the user to the homepage
-        window.location.replace('/');
-      } else {
-        // If the authentication fails, show an error message
-        alert('Incorrect username or password');
-      }
-    });
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        'http://localhost:5001/api/professors/signup-professor',
+        {
+          name,
+          email,
+          password,
+        }
+      );
+      setSuccess(res.data.data);
+      navigate('/login-professor');
+      setError(null);
+    } catch (err) {
+      setError(err);
+      setSuccess(null);
+    }
+  };
   return (
     <>
       <div className="background">
@@ -35,12 +45,23 @@ const SignupProfessorScreen = () => {
         <form className="form-login" onSubmit={handleSubmit}>
           <div className="input-container">
             <label className="label-login">
-              <span className="text-login">Email</span>
+              <span className="text-login">Name</span>
               <input
                 className="input-login"
                 type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </label>
+          </div>
+          <div className="input-container">
+            <label className="label-login">
+              <span className="text-login">Email</span>
+              <input
+                className="input-login"
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </label>
           </div>
@@ -55,17 +76,8 @@ const SignupProfessorScreen = () => {
               />
             </label>
           </div>
-          <div className="input-container">
-            <label className="label-login">
-              <span className="text-login">Confirm Password</span>
-              <input
-                className="input-login"
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-              />
-            </label>
-          </div>
+          {error && <p>{error.message}</p>}
+          {success && <p>{success}</p>}
           <div className="button-submit">
             <button type="submit">
               <span className="button-text">Sign up</span>

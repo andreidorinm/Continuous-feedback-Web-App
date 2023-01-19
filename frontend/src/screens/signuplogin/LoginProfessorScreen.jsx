@@ -66,7 +66,7 @@ function LoginProfessorScreen() {
             </label>
           </div>
           <span>Don't have an account?</span>
-          <Link className="link-signup" to="/signup-student" replace>
+          <Link className="link-signup" to="/signup-professor" replace>
             <span className="text-signup">Sign up here</span>
           </Link>
           <div className="button-submit">
