@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../screens/signuplogin/screens.scss';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { Line, Bar } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
+import { useLocation } from 'react-router-dom';
 
 function StatisticsScreen() {
   const [chartData, setChartData] = useState({});
@@ -13,65 +12,29 @@ function StatisticsScreen() {
   if (location.state && location.state.activityId) {
     activityId = location.state.activityId;
   }
+
   useEffect(() => {
     if (activityId) {
       axios
         .get(`http://localhost:5001/api/activities/${activityId}/feedback`)
         .then((response) => {
           const data = response.data.data;
-          setFeedback(response.data.data);
+          console.log(data);
           setActivityId(activityId);
-
-          let activityTitles = [];
-          let feedbackCounts = {};
-          data.forEach((feedback) => {
-            const activityId = feedback.activityId;
-            if (!activityTitles.includes(activityId)) {
-              activityTitles.push(activityId);
-              feedbackCounts[activityId] = 1;
-            } else {
-              feedbackCounts[activityId]++;
-            }
-          });
-          // set chart data
-          setChartData({
-            labels: activityTitles,
-            datasets: [
-              {
-                label: 'Number of feedbacks',
-                data: Object.values(feedbackCounts),
-                backgroundColor,
-              },
-            ],
-          });
+          setChartData(data);
         });
     }
   }, [activityId]);
 
   return (
     <>
-      <div className="background">
-        <div className="light"></div>
-        <div className="circle-one"></div>
-        <div className="circle-two"></div>
-        <div className="circle-three"></div>
-        <div className="circle-four"></div>
-      </div>
-      <h1></h1>
-      <div
-        className="activity"
-        key={activity.id}
-        onClick={() => setActivityId(activity.id)}
-      >
-        {activity.title}
-      </div>
       <div className="chart">
-        <Bar
+        <Pie
           data={chartData}
           options={{
             title: {
               display: true,
-              text: 'Feedbacks per activity',
+              text: 'Feedback amount of emoji per activity',
               fontSize: 20,
             },
             legend: {

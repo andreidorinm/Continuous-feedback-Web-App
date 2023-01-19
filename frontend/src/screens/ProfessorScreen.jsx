@@ -10,7 +10,7 @@ import {
   BsFillBarChartFill,
 } from 'react-icons/bs';
 import Modal from 'react-bootstrap/Modal';
-import PerfectScrollbar from 'react-perfect-scrollbar'
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import './pages.scss';
 
 function ProfessorScreen() {
@@ -19,12 +19,17 @@ function ProfessorScreen() {
   const { professorId } = location.state;
   const [professor, setProfessor] = useState({});
   const [activities, setActivities] = useState([]);
-  const [updatedActivity, setUpdatedActivity] = useState({});
   const [show, setShowModal] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const [duration, setDuration] = useState('');
+  const [updateModalShow, setUpdateModalShow] = useState(false);
+  const [updateActivity, setUpdateActivity] = useState({});
+  const [updateTitle, setUpdateTitle] = useState('');
+  const [updateDescription, setUpdateDescription] = useState('');
+  const [updateDate, setUpdateDate] = useState('');
+  const [updateDuration, setUpdateDuration] = useState('');
 
   useEffect(() => {
     if (professorId) {
@@ -47,6 +52,19 @@ function ProfessorScreen() {
       });
   }, [professorId]);
 
+  const handleUpdateModalOpen = (activity) => {
+    setUpdateActivity(activity);
+    setUpdateTitle(activity.title);
+    setUpdateDescription(activity.description);
+    setUpdateDate(activity.date);
+    setUpdateDuration(activity.duration);
+    setUpdateModalShow(true);
+  };
+
+  const handleUpdateModalClose = () => {
+    setUpdateModalShow(false);
+  };
+
   const handleDelete = (activityId) => {
     axios
       .delete(`http://localhost:5001/api/activities/${activityId}`)
@@ -60,18 +78,45 @@ function ProfessorScreen() {
       });
   };
 
-  const handleUpdate = (activityId) => {
+  const handleUpdateSubmit = (event) => {
+    event.preventDefault();
     axios
-      .put(`http://localhost:5001/api/activities/${activityId}`, {
-        // data to be updated
-      })
-      .then((response) => {
-        setUpdatedActivity(response.data.data);
-        setShowModal(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    .put(`http://localhost:5001/api/activities/${updateActivity.id}`, {
+      title: updateTitle,
+      description: updateDescription,
+      date: updateDate,
+      duration: updateDuration
+    })
+    .then((response) => {
+      handleModalClose();
+      handleUpdateModalClose();
+      axios.get('http://localhost:5001/api/activities')
+        .then((res) => {
+          setActivities(res.data.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  };
+
+  const handleUpdateTitleChange = (event) => {
+    setUpdateTitle(event.target.value);
+  };
+
+  const handleUpdateDescriptionChange = (event) => {
+    setUpdateDescription(event.target.value);
+  };
+
+  const handleUpdateDateChange = (event) => {
+    setUpdateDate(event.target.value);
+  };
+
+  const handleUpdateDurationChange = (event) => {
+    setUpdateDuration(event.target.value);
   };
 
   const handleModalClose = () => {
@@ -103,7 +148,6 @@ function ProfessorScreen() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
     axios
       .post('http://localhost:5001/api/activities', {
         professorId,
@@ -130,7 +174,7 @@ function ProfessorScreen() {
   };
 
   const handleViewFeedback = (activityId) => {
-    navigate(`/activities/${activityId}/feedback`);
+    navigate(`/activities/${activityId}/feedback`, {state: { activityId }});
   };
 
   return (
@@ -144,47 +188,94 @@ function ProfessorScreen() {
               <th>Actions</th>
             </tr>
           </thead>
-          
+
           <tbody>
-          <PerfectScrollbar>
-            {activities.map((activity) => (
-              <tr key={activity.id}>
-                <td className="container-activity-title">{activity.title}</td>
-                <td>
-                  <div className="container-buttons">
-                    <Button
-                      className="btn-feedback"
-                      onClick={() => handleViewFeedback(activity.id)}
-                    >
-                      <span>View Feedback</span>
-                    </Button>
-                    <Button
-                      className="btn-table"
-                      variant="warning"
-                      onClick={() => handleUpdate(activity.id)}
-                    >
-                      <BsFillPencilFill />
-                    </Button>
-                    <Button
-                      className="btn-table"
-                      variant="danger"
-                      onClick={() => handleDelete(activity.id)}
-                    >
-                      <BsFillTrashFill />
-                    </Button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+            <PerfectScrollbar>
+              {activities.map((activity) => (
+                <tr key={activity.id}>
+                  <td className="container-activity-title">{activity.title}</td>
+                  <td>
+                    <td className="container-buttons">
+                      <Button
+                        className="btn-feedback"
+                        onClick={() => handleViewFeedback(activity.id)}
+                      >
+                        <span>View Feedback</span>
+                      </Button>
+                      <Button
+                        className="btn-table"
+                        variant="warning"
+                        onClick={() => handleUpdateModalOpen(activity)}
+                      >
+                        <BsFillPencilFill />
+                      </Button>
+                      <Button
+                        className="btn-table"
+                        variant="danger"
+                        onClick={() => handleDelete(activity.id)}
+                      >
+                        <BsFillTrashFill />
+                      </Button>
+                    </td>
+                  </td>
+                </tr>
+              ))}
             </PerfectScrollbar>
           </tbody>
         </Table>
+        <Modal show={updateModalShow} onHide={handleModalClose} onExited={() => setUpdateModalShow(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Update Activity</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form onSubmit={handleUpdateSubmit}>
+              <div className="form-group">
+                <label>Title</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={updateTitle}
+                  onChange={handleUpdateTitleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Description</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={updateDescription}
+                  onChange={handleUpdateDescriptionChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Date</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={updateDate}
+                  onChange={handleUpdateDateChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Duration</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={updateDuration}
+                  onChange={handleUpdateDurationChange}
+                />
+              </div>
+              <Button variant="primary" type="submit">
+                Update Activity
+              </Button>
+            </form>
+          </Modal.Body>
+        </Modal>
         <Modal
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
-          show={show}
-          onHide={handleClose}
+          show={show} onHide={handleClose} onExited={() => setShowModal(false)}
         >
           <Modal.Header>
             <Modal.Title>
@@ -253,8 +344,10 @@ function ProfessorScreen() {
             <Button
               className="button-create"
               variant="primary"
-              onClick={() => {handleSubmit(event); setShowModal(false);}}
-              
+              onClick={() => {
+                handleSubmit(event);
+                setShowModal(false);
+              }}
             >
               Create
             </Button>
@@ -267,14 +360,6 @@ function ProfessorScreen() {
             onClick={handleCreate}
           >
             <BsFillArchiveFill />
-          </Button>
-
-          <Button
-            className="button-create"
-            variant="success"
-            onClick={handleStatistics}
-          >
-            <BsFillBarChartFill />
           </Button>
         </div>
       </div>
