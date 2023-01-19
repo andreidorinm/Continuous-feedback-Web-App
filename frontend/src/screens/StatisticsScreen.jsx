@@ -18,7 +18,8 @@ function StatisticsScreen() {
       axios
         .get(`http://localhost:5001/api/activities/${activityId}/feedback`)
         .then((response) => {
-          const data = response.data;
+          const data = response.data.data;
+          console.log(data);
           setActivityId(activityId);
           setChartData(data);
         });

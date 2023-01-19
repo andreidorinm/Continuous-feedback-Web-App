@@ -174,7 +174,7 @@ function ProfessorScreen() {
   };
 
   const handleViewFeedback = (activityId) => {
-    navigate(`/activities/${activityId}/feedback`);
+    navigate(`/activities/${activityId}/feedback`, {state: { activityId }});
   };
 
   return (
@@ -360,14 +360,6 @@ function ProfessorScreen() {
             onClick={handleCreate}
           >
             <BsFillArchiveFill />
-          </Button>
-
-          <Button
-            className="button-create"
-            variant="success"
-            onClick={handleStatistics}
-          >
-            <BsFillBarChartFill />
           </Button>
         </div>
       </div>
