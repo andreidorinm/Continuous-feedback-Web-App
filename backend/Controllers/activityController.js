@@ -94,8 +94,13 @@ const searchActivities = async (req, res, next) => {
         },
       ],
     });
-    if (activities.length > 0) {
-      res.status(200).json({ data: activities });
+    const currentDate = new Date()
+    const filteredActivities = activities.filter(activity => {
+      const end = new Date(activity.date.getTime() + activity.duration * 60000)
+      return activity.date <= currentDate && end >= currentDate
+    })
+    if (filteredActivities.length > 0) {
+      res.status(200).json({ data: filteredActivities });
     } else {
       res.status(404).json({ message: 'No activity found.' });
     }
